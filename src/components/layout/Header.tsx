@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Sparkles } from 'lucide-react';
+import { Menu, X, Sparkles, Download } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -9,6 +9,7 @@ const navLinks = [
   { path: '/pokedex', label: 'Pokédex' },
   { path: '/games', label: 'Jogos' },
   { path: '/regions', label: 'Regiões' },
+  { path: '/install', label: 'Instalar', icon: Download },
 ];
 
 export function Header() {
@@ -35,10 +36,11 @@ export function Header() {
                 variant={location.pathname === link.path ? 'default' : 'ghost'}
                 size="sm"
                 className={cn(
-                  'transition-all duration-200',
+                  'transition-all duration-200 gap-1.5',
                   location.pathname === link.path && 'shadow-md'
                 )}
               >
+                {link.icon && <link.icon className="h-4 w-4" />}
                 {link.label}
               </Button>
             </Link>
@@ -64,8 +66,9 @@ export function Header() {
               <Link key={link.path} to={link.path} onClick={() => setIsMenuOpen(false)}>
                 <Button
                   variant={location.pathname === link.path ? 'default' : 'ghost'}
-                  className="w-full justify-start"
+                  className="w-full justify-start gap-2"
                 >
+                  {link.icon && <link.icon className="h-4 w-4" />}
                   {link.label}
                 </Button>
               </Link>
