@@ -14,7 +14,101 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      pokemon_teams: {
+        Row: {
+          created_at: string
+          game_id: string
+          game_name: string
+          id: string
+          team_name: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          game_id: string
+          game_name: string
+          id?: string
+          team_name?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          game_id?: string
+          game_name?: string
+          id?: string
+          team_name?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          id: string
+          updated_at: string
+          user_id: string
+          username: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          id?: string
+          updated_at?: string
+          user_id: string
+          username?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          id?: string
+          updated_at?: string
+          user_id?: string
+          username?: string | null
+        }
+        Relationships: []
+      }
+      team_pokemon: {
+        Row: {
+          created_at: string
+          id: string
+          nickname: string | null
+          pokemon_id: number
+          pokemon_name: string
+          slot: number
+          team_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          nickname?: string | null
+          pokemon_id: number
+          pokemon_name: string
+          slot: number
+          team_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          nickname?: string | null
+          pokemon_id?: number
+          pokemon_name?: string
+          slot?: number
+          team_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "team_pokemon_team_id_fkey"
+            columns: ["team_id"]
+            isOneToOne: false
+            referencedRelation: "pokemon_teams"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
