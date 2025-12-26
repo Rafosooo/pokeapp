@@ -177,12 +177,33 @@ export interface Location {
   }>;
 }
 
+export interface TypeRelations {
+  double_damage_from: Array<{ name: string; url: string }>;
+  double_damage_to: Array<{ name: string; url: string }>;
+  half_damage_from: Array<{ name: string; url: string }>;
+  half_damage_to: Array<{ name: string; url: string }>;
+  no_damage_from: Array<{ name: string; url: string }>;
+  no_damage_to: Array<{ name: string; url: string }>;
+}
+
+export interface TypeDetail {
+  id: number;
+  name: string;
+  damage_relations: TypeRelations;
+  pokemon: Array<{
+    pokemon: {
+      name: string;
+      url: string;
+    };
+  }>;
+}
+
 export async function getTypes(): Promise<{ results: Array<{ name: string; url: string }> }> {
   const res = await fetch(`${BASE_URL}/type`);
   return res.json();
 }
 
-export async function getType(idOrName: string | number): Promise<{ pokemon: Array<{ pokemon: { name: string; url: string } }> }> {
+export async function getType(idOrName: string | number): Promise<TypeDetail> {
   const res = await fetch(`${BASE_URL}/type/${idOrName}`);
   return res.json();
 }
@@ -287,8 +308,47 @@ export async function getPokemonEncounters(id: number): Promise<LocationAreaEnco
   return res.json();
 }
 
+export interface VersionGroup {
+  id: number;
+  name: string;
+  generation: {
+    name: string;
+    url: string;
+  };
+  regions: Array<{
+    name: string;
+    url: string;
+  }>;
+  pokedexes: Array<{
+    name: string;
+    url: string;
+  }>;
+}
+
+export interface Pokedex {
+  id: number;
+  name: string;
+  pokemon_entries: Array<{
+    entry_number: number;
+    pokemon_species: {
+      name: string;
+      url: string;
+    };
+  }>;
+}
+
 export async function getVersionGroups(): Promise<{ results: Array<{ name: string; url: string }> }> {
-  const res = await fetch(`${BASE_URL}/version-group`);
+  const res = await fetch(`${BASE_URL}/version-group?limit=100`);
+  return res.json();
+}
+
+export async function getVersionGroup(idOrName: string | number): Promise<VersionGroup> {
+  const res = await fetch(`${BASE_URL}/version-group/${idOrName}`);
+  return res.json();
+}
+
+export async function getPokedex(idOrName: string | number): Promise<Pokedex> {
+  const res = await fetch(`${BASE_URL}/pokedex/${idOrName}`);
   return res.json();
 }
 

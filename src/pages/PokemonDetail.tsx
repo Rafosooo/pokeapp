@@ -7,6 +7,7 @@ import { TypeBadge } from '@/components/pokemon/TypeBadge';
 import { StatBar } from '@/components/pokemon/StatBar';
 import { PokemonGallery } from '@/components/pokemon/PokemonGallery';
 import { LocationDialog } from '@/components/pokemon/LocationDialog';
+import { TypeEffectiveness } from '@/components/pokemon/TypeEffectiveness';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { Button } from '@/components/ui/button';
 import { useFavorites } from '@/hooks/use-favorites';
@@ -271,6 +272,12 @@ export default function PokemonDetail() {
               ))}
             </div>
           </div>
+        </div>
+
+        {/* Type Effectiveness */}
+        <div className="mt-8 rounded-2xl border border-border bg-card p-6">
+          <h2 className="mb-6 text-xl font-bold text-foreground">Efetividade de Tipos</h2>
+          <TypeEffectiveness types={pokemon.types.map(t => t.type.name)} />
         </div>
 
         {/* Locations */}
