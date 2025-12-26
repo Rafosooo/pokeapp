@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,89 +11,123 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 45 100% 96%;
+    --foreground: 220 20% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 220 20% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 220 20% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 355 90% 55%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 45 100% 55%;
+    --secondary-foreground: 220 20% 15%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 45 30% 90%;
+    --muted-foreground: 220 10% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 210 100% 50%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 45 30% 85%;
+    --input: 45 30% 85%;
+    --ring: 355 90% 55%;
 
-    --radius: 0.5rem;
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 220 20% 15%;
+    --sidebar-primary: 355 90% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 45 100% 92%;
+    --sidebar-accent-foreground: 220 20% 15%;
+    --sidebar-border: 45 30% 85%;
+    --sidebar-ring: 355 90% 55%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    --chart-1: 355 90% 55%;
+    --chart-2: 45 100% 55%;
+    --chart-3: 210 100% 50%;
+    --chart-4: 140 70% 45%;
+    --chart-5: 280 70% 55%;
 
-    --sidebar-primary: 240 5.9% 10%;
+    --pokemon-fire: 25 95% 55%;
+    --pokemon-water: 210 100% 50%;
+    --pokemon-grass: 140 70% 45%;
+    --pokemon-electric: 50 100% 50%;
+    --pokemon-psychic: 330 80% 60%;
+    --pokemon-ice: 190 80% 70%;
+    --pokemon-dragon: 260 80% 55%;
+    --pokemon-dark: 240 10% 25%;
+    --pokemon-fairy: 340 70% 75%;
+    --pokemon-normal: 45 20% 60%;
+    --pokemon-fighting: 15 90% 45%;
+    --pokemon-flying: 255 70% 70%;
+    --pokemon-poison: 280 60% 50%;
+    --pokemon-ground: 35 50% 50%;
+    --pokemon-rock: 40 30% 45%;
+    --pokemon-bug: 85 70% 40%;
+    --pokemon-ghost: 265 50% 45%;
+    --pokemon-steel: 220 15% 60%;
 
-    --sidebar-primary-foreground: 0 0% 98%;
+    --gradient-pokeball: linear-gradient(180deg, hsl(355 90% 55%) 0%, hsl(355 90% 55%) 45%, hsl(220 20% 15%) 45%, hsl(220 20% 15%) 55%, hsl(0 0% 100%) 55%, hsl(0 0% 100%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(355 90% 55%) 0%, hsl(45 100% 55%) 50%, hsl(210 100% 50%) 100%);
 
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --shadow-pokemon: 0 8px 32px -8px hsl(355 90% 55% / 0.3);
+    --shadow-card: 0 4px 20px -4px hsl(220 20% 15% / 0.1);
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 220 25% 10%;
+    --foreground: 45 20% 95%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 220 20% 15%;
+    --card-foreground: 45 20% 95%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 220 20% 15%;
+    --popover-foreground: 45 20% 95%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 355 90% 55%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 45 80% 50%;
+    --secondary-foreground: 220 20% 10%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 220 15% 20%;
+    --muted-foreground: 220 10% 60%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 210 100% 55%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --border: 220 15% 25%;
+    --input: 220 15% 25%;
+    --ring: 355 90% 55%;
+
+    --sidebar-background: 220 25% 12%;
+    --sidebar-foreground: 45 20% 95%;
+    --sidebar-primary: 355 90% 55%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 220 15% 20%;
+    --sidebar-accent-foreground: 45 20% 95%;
+    --sidebar-border: 220 15% 25%;
+    --sidebar-ring: 355 90% 55%;
+
+    --chart-1: 355 90% 55%;
+    --chart-2: 45 100% 55%;
+    --chart-3: 210 100% 55%;
+    --chart-4: 140 70% 50%;
+    --chart-5: 280 70% 60%;
+
+    --shadow-pokemon: 0 8px 32px -8px hsl(355 90% 55% / 0.4);
+    --shadow-card: 0 4px 20px -4px hsl(0 0% 0% / 0.3);
   }
 }
 
