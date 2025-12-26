@@ -1,25 +1,20 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Sparkles, Download, Users, LogIn, LogOut } from 'lucide-react';
+import { Menu, X, Sparkles, Download } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { useAuth } from '@/hooks/useAuth';
 
 const navLinks = [
   { path: '/', label: 'Início' },
   { path: '/pokedex', label: 'Pokédex' },
   { path: '/games', label: 'Jogos' },
   { path: '/regions', label: 'Regiões' },
-  { path: '/my-teams', label: 'Meus Times', icon: Users, auth: true },
   { path: '/install', label: 'Instalar', icon: Download },
 ];
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
-  const { user, signOut } = useAuth();
-
-  const filteredNavLinks = navLinks.filter(link => !link.auth || user);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-card/80 backdrop-blur-lg">
@@ -35,7 +30,7 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-1">
-          {filteredNavLinks.map((link) => (
+          {navLinks.map((link) => (
             <Link key={link.path} to={link.path}>
               <Button
                 variant={location.pathname === link.path ? 'default' : 'ghost'}
@@ -50,24 +45,6 @@ export function Header() {
               </Button>
             </Link>
           ))}
-          {user ? (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => signOut()}
-              className="gap-1.5 text-muted-foreground"
-            >
-              <LogOut className="h-4 w-4" />
-              Sair
-            </Button>
-          ) : (
-            <Link to="/auth">
-              <Button variant="ghost" size="sm" className="gap-1.5">
-                <LogIn className="h-4 w-4" />
-                Entrar
-              </Button>
-            </Link>
-          )}
         </nav>
 
         {/* Mobile Menu Button */}
@@ -85,7 +62,7 @@ export function Header() {
       {isMenuOpen && (
         <nav className="md:hidden border-t border-border bg-card p-4">
           <div className="flex flex-col gap-2">
-            {filteredNavLinks.map((link) => (
+            {navLinks.map((link) => (
               <Link key={link.path} to={link.path} onClick={() => setIsMenuOpen(false)}>
                 <Button
                   variant={location.pathname === link.path ? 'default' : 'ghost'}
@@ -96,26 +73,6 @@ export function Header() {
                 </Button>
               </Link>
             ))}
-            {user ? (
-              <Button
-                variant="ghost"
-                onClick={() => {
-                  signOut();
-                  setIsMenuOpen(false);
-                }}
-                className="w-full justify-start gap-2 text-muted-foreground"
-              >
-                <LogOut className="h-4 w-4" />
-                Sair
-              </Button>
-            ) : (
-              <Link to="/auth" onClick={() => setIsMenuOpen(false)}>
-                <Button variant="ghost" className="w-full justify-start gap-2">
-                  <LogIn className="h-4 w-4" />
-                  Entrar
-                </Button>
-              </Link>
-            )}
           </div>
         </nav>
       )}
