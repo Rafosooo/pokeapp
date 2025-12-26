@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Sparkles, Download } from 'lucide-react';
+import { Menu, X, Sparkles, Download, Heart } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 const navLinks = [
   { path: '/', label: 'Início' },
   { path: '/pokedex', label: 'Pokédex' },
+  { path: '/favorites', label: 'Favoritos', icon: Heart },
   { path: '/games', label: 'Jogos' },
   { path: '/regions', label: 'Regiões' },
   { path: '/install', label: 'Instalar', icon: Download },

@@ -5,6 +5,7 @@ import { Layout } from '@/components/layout/Layout';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { Button } from '@/components/ui/button';
 import { getRegions, getRegion, formatPokemonName } from '@/lib/pokeapi';
+import { LocationDialog } from '@/components/pokemon/LocationDialog';
 
 const REGION_COLORS = [
   'from-pokemon-fire to-pokemon-fighting',
@@ -20,6 +21,7 @@ const REGION_COLORS = [
 
 export default function Regions() {
   const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
+  const [selectedLocation, setSelectedLocation] = useState<{name: string, region: string} | null>(null);
 
   const { data: regions, isLoading } = useQuery({
     queryKey: ['regions'],
@@ -109,15 +111,16 @@ export default function Regions() {
                     Locais ({selectedRegionData.locations.length})
                   </h3>
 
-                  <div className="max-h-[400px] overflow-y-auto">
+                  <div className="max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
                     <div className="space-y-2">
                       {selectedRegionData.locations.map((location) => (
-                        <div
+                        <button
                           key={location.name}
-                          className="rounded-lg bg-muted px-3 py-2 text-sm text-foreground"
+                          onClick={() => setSelectedLocation({ name: location.name, region: selectedRegionData.name })}
+                          className="w-full text-left rounded-lg bg-muted px-3 py-2 text-sm text-foreground hover:bg-primary/10 hover:text-primary transition-colors"
                         >
                           {formatPokemonName(location.name)}
-                        </div>
+                        </button>
                       ))}
                     </div>
                   </div>
@@ -133,6 +136,13 @@ export default function Regions() {
             </div>
           </div>
         )}
+
+        <LocationDialog
+            isOpen={!!selectedLocation}
+            onClose={() => setSelectedLocation(null)}
+            locationName={selectedLocation?.name || ''}
+            region={selectedLocation?.region}
+        />
       </div>
     </Layout>
   );

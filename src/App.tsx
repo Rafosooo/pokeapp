@@ -10,6 +10,7 @@ import PokemonDetail from "./pages/PokemonDetail";
 import Games from "./pages/Games";
 import Regions from "./pages/Regions";
 import Install from "./pages/Install";
+import Favorites from "./pages/Favorites";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient({
@@ -31,6 +32,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/pokedex" element={<Pokedex />} />
+          <Route path="/favorites" element={<Favorites />} />
           <Route path="/pokemon/:id" element={<PokemonDetail />} />
           <Route path="/games" element={<Games />} />
           <Route path="/regions" element={<Regions />} />

@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
 import { formatPokemonName, getPokemonImageUrl, TYPE_COLORS } from '@/lib/pokeapi';
 import { cn } from '@/lib/utils';
+import { useFavorites } from '@/hooks/use-favorites';
+import { Heart } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 interface PokemonCardProps {
   id: number;
@@ -11,6 +14,13 @@ interface PokemonCardProps {
 export function PokemonCard({ id, name, types = [] }: PokemonCardProps) {
   const primaryType = types[0] || 'normal';
   const typeColor = TYPE_COLORS[primaryType] || 'pokemon-normal';
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const isFav = isFavorite(id);
+
+  const handleFavoriteClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    toggleFavorite({ id, name, types });
+  };
 
   return (
     <Link to={`/pokemon/${id}`}>
@@ -25,6 +35,18 @@ export function PokemonCard({ id, name, types = [] }: PokemonCardProps) {
             background: `radial-gradient(circle at top right, hsl(var(--${typeColor.replace('pokemon-', 'pokemon-')})) 0%, transparent 70%)`,
           }}
         />
+
+        {/* Favorite Button */}
+        <Button
+          variant="ghost"
+          size="icon"
+          className="absolute top-2 left-2 z-10 h-8 w-8 rounded-full bg-background/50 hover:bg-background/80"
+          onClick={handleFavoriteClick}
+        >
+          <Heart
+            className={cn('h-4 w-4 transition-colors', isFav ? 'fill-red-500 text-red-500' : 'text-muted-foreground')}
+          />
+        </Button>
 
         {/* Pokemon ID */}
         <span className="absolute top-3 right-3 text-sm font-mono text-muted-foreground">
