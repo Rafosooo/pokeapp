@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Sparkles, Download, Heart } from 'lucide-react';
+import { Menu, X, Download, Heart, Trophy } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -10,6 +10,7 @@ const navLinks = [
   { path: '/favorites', label: 'Favoritos', icon: Heart },
   { path: '/games', label: 'Jogos' },
   { path: '/regions', label: 'Regiões' },
+  { path: '/gyms', label: 'Ginásios', icon: Trophy },
   { path: '/install', label: 'Instalar', icon: Download },
 ];
 
@@ -21,9 +22,7 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-border bg-card/80 backdrop-blur-lg">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link to="/" className="flex items-center gap-2 font-bold text-xl">
-          <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-primary">
-            <Sparkles className="h-5 w-5 text-primary-foreground" />
-          </div>
+          <img src="/pwa-192x192.png" alt="PokéGuide" className="h-10 w-10 rounded-lg" />
           <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
             PokéGuide
           </span>

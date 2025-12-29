@@ -9,6 +9,7 @@ import Pokedex from "./pages/Pokedex";
 import PokemonDetail from "./pages/PokemonDetail";
 import Games from "./pages/Games";
 import Regions from "./pages/Regions";
+import GymGuide from "./pages/GymGuide";
 import Install from "./pages/Install";
 import Favorites from "./pages/Favorites";
 import NotFound from "./pages/NotFound";
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/pokemon/:id" element={<PokemonDetail />} />
           <Route path="/games" element={<Games />} />
           <Route path="/regions" element={<Regions />} />
+          <Route path="/gyms" element={<GymGuide />} />
           <Route path="/install" element={<Install />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

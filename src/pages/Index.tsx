@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { BookOpen, Gamepad2, MapPin, Sparkles, ChevronRight } from 'lucide-react';
+import { BookOpen, Gamepad2, MapPin, Sparkles, ChevronRight, Trophy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Layout } from '@/components/layout/Layout';
 import { PokemonCard } from '@/components/pokemon/PokemonCard';
@@ -28,6 +28,13 @@ const features = [
     description: 'Explore as regiões do mundo Pokémon e descubra onde encontrar cada criatura.',
     link: '/regions',
     color: 'bg-pokemon-grass',
+  },
+  {
+    icon: Trophy,
+    title: 'Guia de Ginásios',
+    description: 'Estratégias completas para vencer todos os líderes de ginásio e a Elite dos 4.',
+    link: '/gyms',
+    color: 'bg-yellow-500',
   },
 ];
 

@@ -111,21 +111,83 @@ export interface EvolutionChain {
   chain: EvolutionNode;
 }
 
+export interface EvolutionDetail {
+  min_level: number | null;
+  trigger: {
+    name: string;
+  };
+  item: {
+    name: string;
+  } | null;
+  held_item: {
+    name: string;
+  } | null;
+  known_move: {
+    name: string;
+  } | null;
+  known_move_type: {
+    name: string;
+  } | null;
+  location: {
+    name: string;
+  } | null;
+  min_happiness: number | null;
+  min_beauty: number | null;
+  min_affection: number | null;
+  time_of_day: string;
+  needs_overworld_rain: boolean;
+  relative_physical_stats: number | null;
+  turn_upside_down: boolean;
+  gender: number | null;
+}
+
 export interface EvolutionNode {
   species: {
     name: string;
     url: string;
   };
-  evolution_details: Array<{
-    min_level: number | null;
-    trigger: {
-      name: string;
-    };
-    item: {
-      name: string;
-    } | null;
-  }>;
+  evolution_details: EvolutionDetail[];
   evolves_to: EvolutionNode[];
+}
+
+export function formatEvolutionDetails(details: EvolutionDetail): string {
+  const parts = [];
+
+  if (details.min_level) parts.push(`Lvl ${details.min_level}`);
+  if (details.min_happiness) parts.push(`Felicidade ${details.min_happiness}`);
+  if (details.min_beauty) parts.push(`Beleza ${details.min_beauty}`);
+  if (details.min_affection) parts.push(`Afeto ${details.min_affection}`);
+  
+  if (details.item) parts.push(`Usar ${formatPokemonName(details.item.name)}`);
+  if (details.held_item) parts.push(`Segurar ${formatPokemonName(details.held_item.name)}`);
+  
+  if (details.known_move) parts.push(`Saber ${formatPokemonName(details.known_move.name)}`);
+  if (details.known_move_type) parts.push(`Saber golpe tipo ${formatPokemonName(details.known_move_type.name)}`);
+  
+  if (details.location) parts.push(`Em ${formatLocationName(details.location.name)}`);
+  if (details.time_of_day) parts.push(details.time_of_day === 'day' ? 'Dia' : 'Noite');
+  
+  if (details.trigger.name === 'trade') parts.push('Troca');
+  if (details.trigger.name === 'shed') parts.push('Shedinja');
+  
+  if (details.needs_overworld_rain) parts.push('Chuva');
+  if (details.turn_upside_down) parts.push('Virar console');
+  
+  if (details.gender === 1) parts.push('Fêmea');
+  if (details.gender === 2) parts.push('Macho');
+
+  // Fallback se não houver condição específica além do trigger
+  if (parts.length === 0 && details.trigger.name !== 'level-up') {
+      if (details.trigger.name === 'three-critical-hits') parts.push('3 Críticos num combate');
+      else if (details.trigger.name === 'galar-yamask') parts.push('49+ Dano sofrido');
+      else if (details.trigger.name === 'take-damage') parts.push('Receber dano');
+      else if (details.trigger.name === 'spin') parts.push('Girar');
+      else if (details.trigger.name === 'tower-of-darkness') parts.push('Torre das Trevas');
+      else if (details.trigger.name === 'tower-of-waters') parts.push('Torre da Água');
+      else parts.push(formatPokemonName(details.trigger.name));
+  }
+
+  return parts.join(', ');
 }
 
 export interface Game {
@@ -266,7 +328,10 @@ export async function getRegion(idOrName: string | number): Promise<Region> {
 }
 
 export async function getLocation(idOrName: string | number): Promise<Location> {
-  const res = await fetch(`${BASE_URL}/location/${idOrName}`);
+  const param = typeof idOrName === 'string' 
+    ? idOrName.toLowerCase().replace(/ /g, '-').replace(/[^a-z0-9-]/g, '')
+    : idOrName;
+  const res = await fetch(`${BASE_URL}/location/${param}`);
   return res.json();
 }
 
@@ -299,7 +364,10 @@ export interface LocationArea {
 }
 
 export async function getLocationArea(idOrName: string | number): Promise<LocationArea> {
-  const res = await fetch(`${BASE_URL}/location-area/${idOrName}`);
+  const param = typeof idOrName === 'string' 
+    ? idOrName.toLowerCase().replace(/ /g, '-').replace(/[^a-z0-9-]/g, '')
+    : idOrName;
+  const res = await fetch(`${BASE_URL}/location-area/${param}`);
   return res.json();
 }
 

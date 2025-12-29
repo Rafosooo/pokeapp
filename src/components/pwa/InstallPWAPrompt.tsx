@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Download, X, Smartphone } from 'lucide-react';
+import { Download, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface BeforeInstallPromptEvent extends Event {
@@ -75,9 +75,7 @@ export function InstallPWAPrompt() {
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10" />
         
         <div className="relative flex items-start gap-4">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-            <Smartphone className="h-6 w-6" />
-          </div>
+          <img src="/pwa-192x192.png" alt="PokéGuide" className="h-12 w-12 rounded-xl" />
           
           <div className="flex-1">
             <h3 className="mb-1 font-semibold text-foreground">

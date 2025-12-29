@@ -23,6 +23,7 @@ import {
   getBulbapediaUrl,
   VERSION_TO_REGION,
   formatLocationName,
+  formatEvolutionDetails,
 } from '@/lib/pokeapi';
 import { translateText } from '@/lib/translate';
 import { cn } from '@/lib/utils';
@@ -74,10 +75,15 @@ export default function PokemonDetail() {
   });
 
   useEffect(() => {
+    // Only play sound if user has interacted with the page or if explicitly requested
+    // This effect handles the automatic playback when data loads, which might be blocked by browsers
     if (pokemon?.cries?.latest) {
       const audio = new Audio(pokemon.cries.latest);
       audio.volume = 0.1;
-      audio.play().catch((e) => console.error('Error playing sound:', e));
+      // We catch the error to prevent the console spam, as autoplay policy is expected behavior
+      audio.play().catch(() => {
+        // Silently fail for autoplay restrictions - user can click the button manually
+      });
     }
   }, [pokemon?.cries?.latest]);
 
@@ -130,19 +136,25 @@ export default function PokemonDetail() {
     }
   };
 
-  // Get evolution chain as flat array
-  const getEvolutions = (node: typeof evolutionChain.chain): Array<{ name: string; id: number }> => {
-    const evolutions: Array<{ name: string; id: number }> = [];
+  // Get evolution chain as flat array with details
+  const getEvolutions = (node: typeof evolutionChain.chain): Array<{ name: string; id: number; details: string | null }> => {
+    const evolutions: Array<{ name: string; id: number; details: string | null }> = [];
     
-    const traverse = (n: typeof node) => {
+    const traverse = (n: typeof node, details: string | null) => {
       evolutions.push({
         name: n.species.name,
         id: getIdFromUrl(n.species.url),
+        details: details
       });
-      n.evolves_to.forEach(traverse);
+      n.evolves_to.forEach(child => {
+          const detailText = child.evolution_details.length > 0 
+            ? formatEvolutionDetails(child.evolution_details[0]) 
+            : null;
+          traverse(child, detailText);
+      });
     };
     
-    traverse(node);
+    traverse(node, null);
     return evolutions;
   };
 
@@ -298,11 +310,11 @@ export default function PokemonDetail() {
                   <button 
                     key={areaName}
                     onClick={() => setSelectedLocation({ name: areaName, region })}
-                    className="group flex items-center justify-between rounded-lg bg-secondary/50 p-3 text-sm text-secondary-foreground hover:bg-secondary transition-all hover:scale-105 w-full text-left"
+                    className="group flex w-full items-center justify-between rounded-lg bg-secondary/50 p-3 text-sm text-secondary-foreground hover:bg-secondary transition-colors text-left"
                     title="Ver detalhes da localização"
                   >
-                    <span className="truncate mr-2">{formatLocationName(areaName)}</span>
-                    <MapPin className="h-3 w-3 opacity-50 group-hover:opacity-100" />
+                    <span className="mr-2 flex-1 break-words leading-tight">{formatLocationName(areaName)}</span>
+                    <MapPin className="h-3 w-3 shrink-0 opacity-50 group-hover:opacity-100" />
                   </button>
                 );
               })}
@@ -336,7 +348,14 @@ export default function PokemonDetail() {
                     </span>
                   </Link>
                   {index < evolutions.length - 1 && (
-                    <ChevronRight className="h-6 w-6 text-muted-foreground" />
+                    <div className="flex flex-col items-center gap-2">
+                      {evolutions[index + 1].details && (
+                        <span className="text-xs font-bold text-muted-foreground text-center max-w-[120px] bg-secondary/50 px-2 py-1 rounded-md">
+                          {evolutions[index + 1].details}
+                        </span>
+                      )}
+                      <ChevronRight className="h-6 w-6 text-muted-foreground" />
+                    </div>
                   )}
                 </div>
               ))}
