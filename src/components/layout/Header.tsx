@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Download, Heart, Trophy } from 'lucide-react';
+import { Menu, X, Download, Heart, Trophy, Users } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -8,6 +8,7 @@ const navLinks = [
   { path: '/', label: 'Início' },
   { path: '/pokedex', label: 'Pokédex' },
   { path: '/favorites', label: 'Favoritos', icon: Heart },
+  { path: '/team-builder', label: 'Equipe', icon: Users },
   { path: '/games', label: 'Jogos' },
   { path: '/regions', label: 'Regiões' },
   { path: '/gyms', label: 'Ginásios', icon: Trophy },

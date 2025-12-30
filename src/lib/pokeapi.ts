@@ -1,8 +1,25 @@
 const BASE_URL = 'https://pokeapi.co/api/v2';
 
+export interface Move {
+  move: {
+    name: string;
+    url: string;
+  };
+  version_group_details: Array<{
+    level_learned_at: number;
+    move_learn_method: {
+      name: string;
+    };
+    version_group: {
+      name: string;
+    };
+  }>;
+}
+
 export interface Pokemon {
   id: number;
   name: string;
+  moves: Move[];
   sprites: {
     front_default: string;
     back_default: string | null;
@@ -289,6 +306,31 @@ export async function getPokemonList(limit = 20, offset = 0): Promise<PokemonLis
 
 export async function getAllPokemon(): Promise<PokemonListResponse> {
   const res = await fetch(`${BASE_URL}/pokemon?limit=10000`);
+  return res.json();
+}
+
+export interface MoveDetail {
+  id: number;
+  name: string;
+  power: number | null;
+  accuracy: number | null;
+  pp: number;
+  type: {
+    name: string;
+  };
+  damage_class: {
+    name: string;
+  };
+  flavor_text_entries: Array<{
+    flavor_text: string;
+    language: {
+      name: string;
+    };
+  }>;
+}
+
+export async function getMove(idOrName: string | number): Promise<MoveDetail> {
+  const res = await fetch(`${BASE_URL}/move/${idOrName}`);
   return res.json();
 }
 
