@@ -68,18 +68,18 @@ export default function InstallPage() {
           {/* App Icon */}
           <div className="mx-auto mb-8 flex h-32 w-32 items-center justify-center rounded-3xl bg-gradient-to-br from-primary to-accent shadow-lg">
             <img 
-              src="/pwa-192x192.png" 
-              alt="PokéGuide" 
+              src="/pwa-512x512.png" 
+              alt="Keponom" 
               className="h-24 w-24 rounded-2xl"
             />
           </div>
 
           <h1 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">
-            Instalar PokéGuide
+            Instalar Keponom
           </h1>
           
           <p className="mb-8 text-lg text-muted-foreground">
-            Adicione o PokéGuide à sua tela inicial para uma experiência completa de app nativo!
+            Adicione o Keponom à sua tela inicial para uma experiência completa de app nativo!
           </p>
 
           {/* Features */}
@@ -109,7 +109,7 @@ export default function InstallPage() {
                 App Instalado!
               </h2>
               <p className="text-muted-foreground">
-                O PokéGuide já está instalado no seu dispositivo.
+                O KepoNom já está instalado no seu dispositivo.
               </p>
             </div>
           ) : isIOS ? (
@@ -156,7 +156,7 @@ export default function InstallPage() {
                 Pronto para instalar!
               </h2>
               <p className="mb-6 text-muted-foreground">
-                Clique no botão abaixo para adicionar o PokéGuide à sua tela inicial.
+                Clique no botão abaixo para adicionar o KepoNom à sua tela inicial.
               </p>
               <Button size="lg" onClick={handleInstall} className="gap-2">
                 <Download className="h-5 w-5" />

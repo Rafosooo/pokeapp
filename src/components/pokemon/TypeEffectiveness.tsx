@@ -172,9 +172,9 @@ export function TypeEffectiveness({ types }: TypeEffectivenessProps) {
               Ver Resumo
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
+          <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] bg-white p-6 rounded-2xl">
             <DialogHeader>
-              <DialogTitle className="text-2xl font-bold flex items-center gap-2">
+              <DialogTitle className="text-2xl font-black uppercase flex items-center gap-2">
                 <FileText className="h-6 w-6" />
                 Resumo de Efetividade
               </DialogTitle>
@@ -183,97 +183,101 @@ export function TypeEffectiveness({ types }: TypeEffectivenessProps) {
             <div className="grid md:grid-cols-2 gap-8 py-4">
               {/* Defensive Column */}
               <div className="space-y-6">
-                <h3 className="text-lg font-semibold flex items-center gap-2 border-b pb-2">
-                  <Shield className="h-5 w-5 text-blue-500" />
-                  Defesa
-                </h3>
-                
-                {/* Weaknesses */}
-                <div>
-                  <h4 className="text-sm font-medium mb-3 flex items-center gap-2 text-red-500">
-                    <ShieldAlert className="h-4 w-4" />
-                    Fraco contra (Recebe mais dano)
-                  </h4>
-                  {weaknesses.length > 0 ? (
-                    <div className="flex flex-wrap gap-2">
-                      {weaknesses.map(t => (
-                        <div key={t} className="flex flex-col items-center">
-                          <TypeBadge type={t} size="sm" />
-                          <span className="text-xs font-bold mt-1 text-red-500">{defensiveMultipliers[t]}x</span>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <p className="text-sm text-muted-foreground">Sem fraquezas conhecidas.</p>
-                  )}
-                </div>
+                <div className="bg-blue-50 p-4 rounded-xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)]">
+                  <h3 className="text-xl font-black uppercase flex items-center gap-2 border-b-2 border-black/10 pb-2 mb-4">
+                    <Shield className="h-6 w-6 text-blue-600" />
+                    Defesa
+                  </h3>
+                  
+                  {/* Weaknesses */}
+                  <div className="mb-6">
+                    <h4 className="text-sm font-bold uppercase mb-3 flex items-center gap-2 text-red-600">
+                      <ShieldAlert className="h-4 w-4" />
+                      Fraco contra
+                    </h4>
+                    {weaknesses.length > 0 ? (
+                      <div className="flex flex-wrap gap-2">
+                        {weaknesses.map(t => (
+                          <div key={t} className="flex flex-col items-center bg-white p-2 rounded-lg border border-black/20 shadow-sm">
+                            <TypeBadge type={t} size="sm" />
+                            <span className="text-xs font-black mt-1 text-red-600">{defensiveMultipliers[t]}x</span>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="text-sm font-medium text-gray-500 italic">Sem fraquezas conhecidas.</p>
+                    )}
+                  </div>
 
-                {/* Resistances */}
-                <div>
-                  <h4 className="text-sm font-medium mb-3 flex items-center gap-2 text-green-500">
-                    <ShieldCheck className="h-4 w-4" />
-                    Resistente a (Recebe menos dano)
-                  </h4>
-                  {resistances.length > 0 ? (
-                    <div className="flex flex-wrap gap-2">
-                      {resistances.map(t => (
-                        <div key={t} className="flex flex-col items-center">
-                          <TypeBadge type={t} size="sm" />
-                          <span className="text-xs font-bold mt-1 text-green-500">{defensiveMultipliers[t]}x</span>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <p className="text-sm text-muted-foreground">Sem resistências conhecidas.</p>
-                  )}
+                  {/* Resistances */}
+                  <div>
+                    <h4 className="text-sm font-bold uppercase mb-3 flex items-center gap-2 text-green-600">
+                      <ShieldCheck className="h-4 w-4" />
+                      Resistente a
+                    </h4>
+                    {resistances.length > 0 ? (
+                      <div className="flex flex-wrap gap-2">
+                        {resistances.map(t => (
+                          <div key={t} className="flex flex-col items-center bg-white p-2 rounded-lg border border-black/20 shadow-sm">
+                            <TypeBadge type={t} size="sm" />
+                            <span className="text-xs font-black mt-1 text-green-600">{defensiveMultipliers[t]}x</span>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="text-sm font-medium text-gray-500 italic">Sem resistências conhecidas.</p>
+                    )}
+                  </div>
                 </div>
               </div>
 
               {/* Offensive Column */}
               <div className="space-y-6">
-                <h3 className="text-lg font-semibold flex items-center gap-2 border-b pb-2">
-                  <Swords className="h-5 w-5 text-red-500" />
-                  Ataque
-                </h3>
-                
-                {/* Strengths */}
-                <div>
-                  <h4 className="text-sm font-medium mb-3 flex items-center gap-2 text-green-500">
-                    <Swords className="h-4 w-4" />
-                    Forte contra (Causa mais dano)
-                  </h4>
-                  {strengths.length > 0 ? (
-                    <div className="flex flex-wrap gap-2">
-                      {strengths.map(t => (
-                        <div key={t} className="flex flex-col items-center">
-                          <TypeBadge type={t} size="sm" />
-                          <span className="text-xs font-bold mt-1 text-green-500">{offensiveMultipliers[t]}x</span>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <p className="text-sm text-muted-foreground">Sem vantagens ofensivas.</p>
-                  )}
-                </div>
+                <div className="bg-red-50 p-4 rounded-xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)]">
+                  <h3 className="text-xl font-black uppercase flex items-center gap-2 border-b-2 border-black/10 pb-2 mb-4">
+                    <Swords className="h-6 w-6 text-red-600" />
+                    Ataque
+                  </h3>
+                  
+                  {/* Strengths */}
+                  <div className="mb-6">
+                    <h4 className="text-sm font-bold uppercase mb-3 flex items-center gap-2 text-green-600">
+                      <Swords className="h-4 w-4" />
+                      Forte contra
+                    </h4>
+                    {strengths.length > 0 ? (
+                      <div className="flex flex-wrap gap-2">
+                        {strengths.map(t => (
+                          <div key={t} className="flex flex-col items-center bg-white p-2 rounded-lg border border-black/20 shadow-sm">
+                            <TypeBadge type={t} size="sm" />
+                            <span className="text-xs font-black mt-1 text-green-600">{offensiveMultipliers[t]}x</span>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="text-sm font-medium text-gray-500 italic">Sem vantagens ofensivas.</p>
+                    )}
+                  </div>
 
-                {/* Weak Attacks */}
-                <div>
-                  <h4 className="text-sm font-medium mb-3 flex items-center gap-2 text-red-500">
-                    <Skull className="h-4 w-4" />
-                    Pouco efetivo contra (Causa menos dano)
-                  </h4>
-                  {weakAttacks.length > 0 ? (
-                    <div className="flex flex-wrap gap-2">
-                      {weakAttacks.map(t => (
-                        <div key={t} className="flex flex-col items-center">
-                          <TypeBadge type={t} size="sm" />
-                          <span className="text-xs font-bold mt-1 text-red-500">{offensiveMultipliers[t]}x</span>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <p className="text-sm text-muted-foreground">Dano normal em todos os outros tipos.</p>
-                  )}
+                  {/* Weak Attacks */}
+                  <div>
+                    <h4 className="text-sm font-bold uppercase mb-3 flex items-center gap-2 text-red-600">
+                      <Skull className="h-4 w-4" />
+                      Pouco efetivo contra
+                    </h4>
+                    {weakAttacks.length > 0 ? (
+                      <div className="flex flex-wrap gap-2">
+                        {weakAttacks.map(t => (
+                          <div key={t} className="flex flex-col items-center bg-white p-2 rounded-lg border border-black/20 shadow-sm">
+                            <TypeBadge type={t} size="sm" />
+                            <span className="text-xs font-black mt-1 text-red-600">{offensiveMultipliers[t]}x</span>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="text-sm font-medium text-gray-500 italic">Dano normal em todos os outros tipos.</p>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -281,18 +285,30 @@ export function TypeEffectiveness({ types }: TypeEffectivenessProps) {
         </Dialog>
       </div>
       <Tabs defaultValue="defensive" className="w-full">
-        <TabsList className="grid w-full grid-cols-2 mb-4 h-auto">
-          <TabsTrigger value="defensive" className="flex flex-col sm:flex-row items-center gap-2 py-2">
-            <Shield className="h-4 w-4" />
-            <span className="text-xs sm:text-sm text-center">Defesa (Dano Recebido)</span>
+        <TabsList className="grid w-full grid-cols-2 mb-4 h-auto p-1 bg-black rounded-xl border-2 border-black gap-1">
+          <TabsTrigger 
+            value="defensive" 
+            className="flex flex-col items-center gap-1 py-3 rounded-lg data-[state=active]:bg-white data-[state=active]:text-black data-[state=active]:border-2 data-[state=active]:border-black data-[state=active]:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-white transition-all h-full"
+          >
+            <div className="flex items-center gap-2">
+              <Shield className="h-4 w-4" />
+              <span className="font-bold uppercase text-xs sm:text-sm">Defesa</span>
+            </div>
+            <span className="text-[10px] sm:text-xs opacity-80 uppercase hidden sm:inline-block">(Dano Recebido)</span>
           </TabsTrigger>
-          <TabsTrigger value="offensive" className="flex flex-col sm:flex-row items-center gap-2 py-2">
-            <Swords className="h-4 w-4" />
-            <span className="text-xs sm:text-sm text-center">Ataque (Dano Causado)</span>
+          <TabsTrigger 
+            value="offensive" 
+            className="flex flex-col items-center gap-1 py-3 rounded-lg data-[state=active]:bg-white data-[state=active]:text-black data-[state=active]:border-2 data-[state=active]:border-black data-[state=active]:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-white transition-all h-full"
+          >
+            <div className="flex items-center gap-2">
+              <Swords className="h-4 w-4" />
+              <span className="font-bold uppercase text-xs sm:text-sm">Ataque</span>
+            </div>
+            <span className="text-[10px] sm:text-xs opacity-80 uppercase hidden sm:inline-block">(Dano Causado)</span>
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent value="defensive">
+        <TabsContent value="defensive" className="mt-4">
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2">
             {ALL_TYPES.map(type => (
               <TypeCell 

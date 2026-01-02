@@ -17,8 +17,8 @@ export default defineConfig(({ mode }) => ({
       registerType: "autoUpdate",
       includeAssets: ["favicon.ico", "pwa-192x192.png", "pwa-512x512.png"],
       manifest: {
-        name: "PokéGuide - Seu Guia Pokémon",
-        short_name: "PokéGuide",
+        name: "Keponom - Seu Guia Pokémon",
+        short_name: "Keponom",
         description: "Explore a Pokédex completa, descubra jogos, viaje pelas regiões e monte seu time Pokémon.",
         theme_color: "#e63946",
         background_color: "#fffbeb",

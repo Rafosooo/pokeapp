@@ -67,19 +67,19 @@ export function PokemonGallery({ pokemon }: PokemonGalleryProps) {
           <Button
             variant="ghost"
             size="icon"
-            className="absolute -left-12 top-1/2 -translate-y-1/2 text-primary-foreground hover:bg-primary-foreground/20"
+            className="absolute -left-12 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full border-2 border-black bg-white text-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[-45%] hover:shadow-none transition-all hover:bg-gray-100"
             onClick={handlePrev}
           >
-            <ChevronLeft className="h-8 w-8" />
+            <ChevronLeft className="h-6 w-6" />
           </Button>
         )}
 
         <div className="relative h-64 w-64 md:h-80 md:w-80">
-          <div className="absolute inset-0 rounded-full bg-primary-foreground/20 blur-3xl" />
+          <div className="absolute inset-0 rounded-full bg-white/40 blur-3xl" />
           <img
             src={currentSprite.url}
             alt={`${pokemon.name} ${currentSprite.label}`}
-            className="relative h-full w-full object-contain drop-shadow-2xl animate-in fade-in zoom-in duration-300"
+            className="relative h-full w-full object-contain drop-shadow-xl animate-in fade-in zoom-in duration-300"
             key={currentSprite.url} // Force re-render on change for animation
           />
         </div>
@@ -88,10 +88,10 @@ export function PokemonGallery({ pokemon }: PokemonGalleryProps) {
           <Button
             variant="ghost"
             size="icon"
-            className="absolute -right-12 top-1/2 -translate-y-1/2 text-primary-foreground hover:bg-primary-foreground/20"
+            className="absolute -right-12 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full border-2 border-black bg-white text-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[-45%] hover:shadow-none transition-all hover:bg-gray-100"
             onClick={handleNext}
           >
-            <ChevronRight className="h-8 w-8" />
+            <ChevronRight className="h-6 w-6" />
           </Button>
         )}
       </div>
@@ -104,34 +104,34 @@ export function PokemonGallery({ pokemon }: PokemonGalleryProps) {
             <div
               key={idx}
               className={cn(
-                "h-2 w-2 rounded-full transition-all",
+                "h-3 w-3 rounded-full border border-black transition-all",
                 idx === viewIndex % sprites.length
-                  ? "bg-primary-foreground w-4"
-                  : "bg-primary-foreground/40"
+                  ? "bg-black"
+                  : "bg-transparent"
               )}
             />
           ))}
         </div>
-        <p className="text-sm font-medium text-primary-foreground/80 uppercase tracking-wider">
+        <p className="text-sm font-black text-gray-500 uppercase tracking-wider">
           {currentSprite.label}
         </p>
 
         {/* Shiny Toggle */}
-        <div className="flex items-center gap-3 rounded-full bg-background/10 px-4 py-2 backdrop-blur-sm border border-white/10">
-          <Label htmlFor="shiny-mode" className="text-sm font-medium text-primary-foreground cursor-pointer">
+        <div className="flex items-center gap-3 rounded-xl bg-white px-4 py-2 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,0.1)]">
+          <Label htmlFor="shiny-mode" className="text-sm font-bold text-gray-500 cursor-pointer uppercase">
             Normal
           </Label>
           <Switch
             id="shiny-mode"
             checked={isShiny}
             onCheckedChange={setIsShiny}
-            className="data-[state=checked]:bg-yellow-400"
+            className="data-[state=checked]:bg-yellow-400 border-2 border-black"
           />
           <Label 
             htmlFor="shiny-mode" 
             className={cn(
-              "flex items-center gap-1 text-sm font-medium cursor-pointer",
-              isShiny ? "text-yellow-300" : "text-primary-foreground"
+              "flex items-center gap-1 text-sm font-bold cursor-pointer uppercase",
+              isShiny ? "text-yellow-600" : "text-gray-500"
             )}
           >
             <Sparkles className="h-3 w-3" />

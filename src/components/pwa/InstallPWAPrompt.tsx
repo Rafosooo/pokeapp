@@ -75,11 +75,11 @@ export function InstallPWAPrompt() {
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10" />
         
         <div className="relative flex items-start gap-4">
-          <img src="/pwa-192x192.png" alt="PokéGuide" className="h-12 w-12 rounded-xl" />
+          <img src="/pwa-512x512.png" alt="Keponom" className="h-12 w-12 rounded-xl" />
           
           <div className="flex-1">
             <h3 className="mb-1 font-semibold text-foreground">
-              Instalar PokéGuide
+              Instalar Keponom
             </h3>
             <p className="mb-3 text-sm text-muted-foreground">
               Adicione à tela inicial para acesso rápido e uso offline!

@@ -35,10 +35,10 @@ export function StatBar({ name, value, maxValue = 255 }: StatBarProps) {
       <span className="w-10 text-right text-sm font-bold text-foreground">
         {value}
       </span>
-      <div className="flex-1 h-3 rounded-full bg-muted overflow-hidden">
+      <div className="flex-1 h-4 rounded-full bg-white border-2 border-black overflow-hidden shadow-[2px_2px_0px_0px_rgba(0,0,0,0.2)]">
         <div
           className={cn(
-            'h-full rounded-full transition-all duration-500',
+            'h-full transition-all duration-500 border-r-2 border-black',
             STAT_COLORS[name] || 'bg-primary'
           )}
           style={{

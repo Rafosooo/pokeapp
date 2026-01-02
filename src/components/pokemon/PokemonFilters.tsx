@@ -27,13 +27,13 @@ export function PokemonFilters({
   return (
     <div className="flex flex-wrap gap-4 items-center mb-6">
       <Select value={selectedType || "all"} onValueChange={(v) => onSelectType(v === "all" ? null : v)}>
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="w-[180px] h-12 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,0.2)] focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] font-bold transition-all">
           <SelectValue placeholder="Tipo" />
         </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="all">Todos os Tipos</SelectItem>
+        <SelectContent className="border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          <SelectItem value="all" className="font-bold">Todos os Tipos</SelectItem>
           {availableTypes.map((type) => (
-            <SelectItem key={type} value={type} className="capitalize">
+            <SelectItem key={type} value={type} className="capitalize font-medium">
               {type}
             </SelectItem>
           ))}
@@ -41,13 +41,13 @@ export function PokemonFilters({
       </Select>
 
       <Select value={selectedGen || "all"} onValueChange={(v) => onSelectGen(v === "all" ? null : v)}>
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="w-[180px] h-12 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,0.2)] focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] font-bold transition-all">
           <SelectValue placeholder="Geração" />
         </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="all">Todas as Gerações</SelectItem>
+        <SelectContent className="border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          <SelectItem value="all" className="font-bold">Todas as Gerações</SelectItem>
           {Object.keys(GENERATION_RANGES).map((gen) => (
-            <SelectItem key={gen} value={gen}>
+            <SelectItem key={gen} value={gen} className="font-medium">
               Geração {gen}
             </SelectItem>
           ))}
@@ -56,13 +56,13 @@ export function PokemonFilters({
 
       {(selectedType || selectedGen) && (
         <Button 
-          variant="ghost" 
+          variant="outline" 
           size="sm" 
           onClick={() => {
             onSelectType(null);
             onSelectGen(null);
           }}
-          className="h-10 px-3"
+          className="h-12 px-4 border-2 border-black hover:bg-red-100 hover:text-red-600 font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,0.2)] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all"
         >
           Limpar Filtros
           <X className="ml-2 h-4 w-4" />

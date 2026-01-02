@@ -24,7 +24,7 @@ export function PokemonCard({ id, name, types = [] }: PokemonCardProps) {
 
   return (
     <Link to={`/pokemon/${id}`}>
-      <div className="group relative overflow-hidden rounded-2xl bg-card border border-border p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary/50">
+      <div className="group relative overflow-hidden rounded-2xl bg-white border-4 border-black p-4 transition-all duration-300 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2">
         {/* Background gradient based on type */}
         <div
           className={cn(
@@ -40,31 +40,31 @@ export function PokemonCard({ id, name, types = [] }: PokemonCardProps) {
         <Button
           variant="ghost"
           size="icon"
-          className="absolute top-2 left-2 z-10 h-8 w-8 rounded-full bg-background/50 hover:bg-background/80"
+          className="absolute top-2 left-2 z-10 h-8 w-8 rounded-full bg-white/80 hover:bg-white border-2 border-black shadow-sm"
           onClick={handleFavoriteClick}
         >
           <Heart
-            className={cn('h-4 w-4 transition-colors', isFav ? 'fill-red-500 text-red-500' : 'text-muted-foreground')}
+            className={cn('h-4 w-4 transition-colors', isFav ? 'fill-red-600 text-red-600' : 'text-black')}
           />
         </Button>
 
         {/* Pokemon ID */}
-        <span className="absolute top-3 right-3 text-sm font-mono text-muted-foreground">
+        <span className="absolute top-3 right-3 text-xs font-black text-black/40">
           #{id.toString().padStart(3, '0')}
         </span>
 
         {/* Pokemon Image */}
-        <div className="relative mx-auto mb-3 h-24 w-24 sm:h-32 sm:w-32">
+        <div className="relative mx-auto mb-4 h-24 w-24 sm:h-32 sm:w-32">
           <img
             src={getPokemonImageUrl(id)}
             alt={name}
-            className="h-full w-full object-contain drop-shadow-lg transition-transform duration-300 group-hover:scale-110"
+            className="h-full w-full object-contain drop-shadow-md transition-transform duration-300 group-hover:scale-110"
             loading="lazy"
           />
         </div>
 
         {/* Pokemon Name */}
-        <h3 className="mb-2 text-center font-semibold text-foreground">
+        <h3 className="mb-3 text-center text-lg font-black text-black uppercase tracking-tight">
           {formatPokemonName(name)}
         </h3>
 
@@ -75,9 +75,8 @@ export function PokemonCard({ id, name, types = [] }: PokemonCardProps) {
               <span
                 key={type}
                 className={cn(
-                  'rounded-full px-3 py-1 text-xs font-medium capitalize',
+                  'rounded-full px-3 py-1 text-xs font-bold capitalize border-2 border-black text-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]',
                   `bg-${TYPE_COLORS[type] || 'pokemon-normal'}`,
-                  'text-primary-foreground'
                 )}
                 style={{
                   backgroundColor: `hsl(var(--${TYPE_COLORS[type]?.replace('pokemon-', 'pokemon-') || 'pokemon-normal'}))`,
