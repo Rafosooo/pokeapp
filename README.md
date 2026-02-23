@@ -11,6 +11,8 @@ https://pokeapp-pi.vercel.app/
 
 Vite
 JavaScript (ES Modules)
+Progressive Web App (PWA)
+Service Workers
 REST API Integration
 Fetch API (Async/Await)
 JSON Data Processing
@@ -31,6 +33,31 @@ Type effectiveness reference
 Dynamic search functionality
 Multi-tab structured UI
 
+📱 Progressive Web App (PWA)
+
+PokeApp is built as a Progressive Web Application, allowing users to install it directly on their mobile devices without requiring an app store.
+PWA Capabilities
+Installable on Android and iOS devices
+App-like user experience
+Home screen launch support
+Fast load performance
+
+📲 How to Install (Mobile)
+
+Users can install the application directly from the browser:
+
+Android (Chrome)
+Open the application in Chrome
+Tap the browser menu
+Select "Add to Home Screen"
+
+iOS (Safari)
+Open the application in Safari
+Tap the Share button
+Select "Add to Home Screen"
+
+Once installed, the application behaves like a native mobile app.
+
 🧠 Technical Highlights
 
 Modular project structure using Vite
@@ -38,6 +65,9 @@ Asynchronous API requests with error handling
 Dynamic DOM rendering based on API responses
 Multi-endpoint REST consumption
 Production-ready cloud deployment
+Progressive Web App architecture  
+Service worker caching strategy  
+Installable mobile-first deployment
 
 🏗️ Local Development
 
