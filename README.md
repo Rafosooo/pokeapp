@@ -1,7 +1,7 @@
-🎮 PokeApp — API-Driven Pokémon Assistant
+🎮 PokeApp — API-Driven Pokémon Data Platform
 
-PokeApp is a data-driven web application designed to assist Pokémon players by providing real-time access to structured game data such as stats, abilities, evolution chains, moves, and type effectiveness.
-The platform dynamically consumes external REST API endpoints and renders user-friendly interfaces to support strategic in-game decision-making.
+PokeApp is a modern web application built with Vite that provides real-time access to structured Pokémon game data such as base stats, moves, abilities, evolution chains, and type effectiveness.
+The application consumes external REST API endpoints and dynamically renders an interactive interface to support in-game decision-making.
 
 🌐 Live Demo
 
@@ -9,44 +9,50 @@ https://pokeapp-pi.vercel.app/
 
 🧱 Tech Stack
 
-JavaScript
+Vite
+JavaScript (ES Modules)
 REST API Integration
-JSON Data Mapping
-Asynchronous Requests (Fetch API)
-Dynamic UI Rendering
+Fetch API (Async/Await)
+JSON Data Processing
 Deployment via Vercel
 
 🔗 Data Source
 
-All application data is retrieved in real time from:
+All data is retrieved in real time from:
 PokéAPI
 
 ⚙️ Features
-Pokémon base stat lookup
-Move information explorer
-Ability data viewer
-Evolution chain visualization
-Type effectiveness support
-Real-time search functionality
-Multi-tab data interface
+
+Pokémon base stats lookup
+Move data explorer
+Ability details
+Evolution chain display
+Type effectiveness reference
+Dynamic search functionality
+Multi-tab structured UI
 
 🧠 Technical Highlights
 
-External REST API consumption
-Multi-endpoint integration
-Asynchronous data handling
-Dynamic component rendering
-Client-side data transformation
-Cloud-based production deployment
+Modular project structure using Vite
+Asynchronous API requests with error handling
+Dynamic DOM rendering based on API responses
+Multi-endpoint REST consumption
+Production-ready cloud deployment
+
+🏗️ Local Development
+
+To run locally:
+npm install
+npm run dev
+
+Build for production:
+npm run build
 
 🎯 Purpose
 
-This project was developed as a personal initiative to explore API-driven application design and improve front-end data consumption techniques using real-time external data sources.
+This project was developed as a personal initiative to explore API-driven application architecture and improve front-end data consumption patterns using real-time external data.
 
 🚀 Deployment
 
-The application is fully deployed and accessible online through: Vercel
-
-📌 Use Case
-
-Designed for Pokémon players who need quick and centralized access to game-related data without navigating through multiple external resources.
+The application is deployed in production via:
+Vercel
